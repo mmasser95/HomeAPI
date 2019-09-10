@@ -46,9 +46,8 @@ class UserR(Resource):
         if not u:
             abort(404, message="El usuario no existe")
         return u.as_dict()
-    @isAuth
-    @isAdmin
-    def post(self, userId):
+    
+    def post(self):
         username = request.json['username']
         email = request.json['email']
         passw = request.json['passw']
@@ -66,7 +65,6 @@ class UserR(Resource):
 
 class LoginR(Resource):
     def post(self):
-        print(request.json)
         email = request.json['email']
         passw = request.json['passw']
         t=Token()
